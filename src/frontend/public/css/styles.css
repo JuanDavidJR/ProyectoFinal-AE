@@ -1,0 +1,17 @@
+body {
+  background-color: #f8f9fa;
+}
+
+.card {
+  border-radius: 0.75rem;
+}
+
+.card-title {
+  font-weight: 500;
+  color: #333;
+}
+
+.btn-primary {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
