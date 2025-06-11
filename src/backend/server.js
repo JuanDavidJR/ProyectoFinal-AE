@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../frontend/public')));
 
 // Servir views
-app.use('/views', express.static(path.join(__dirname, '../frontend/views')));
+app.use(express.static(path.join(__dirname, '../frontend/views')));
 
 // Servir controllers, models, services para import desde main.js
 app.use('/controllers', express.static(path.join(__dirname, '../frontend/controllers')));
