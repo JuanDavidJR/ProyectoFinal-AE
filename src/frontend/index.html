@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEDIAGENDA - Sistema de Citas Médicas</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Landing Page -->
+    <div id="landing-page">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand fw-bold text-primary" href="#">
+                    <i class="bi bi-heart-pulse me-2"></i>
+                    MEDIAGENDA
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="navbar-nav ms-auto">
+                        <a class="nav-link" href="login.html">Iniciar Sesión</a>
+                        <a class="nav-link" href="register.html">Registrarse</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero-section bg-gradient-primary text-white py-5">
+            <div class="container">
+                <div class="row align-items-center min-vh-75">
+                    <div class="col-lg-6">
+                        <h1 class="display-4 fw-bold mb-4">
+                            Agenda tus Citas Médicas de Forma Fácil y Rápida
+                        </h1>
+                        <p class="lead mb-4">
+                            MEDIAGENDA te permite agendar citas con especialistas médicos de manera sencilla, 
+                            gestionar tus citas y llevar un control completo de tu salud.
+                        </p>
+                        <div class="d-flex gap-3">
+                            <a href="register.html" class="btn btn-light btn-lg">
+                                <i class="bi bi-person-plus me-2"></i>
+                                Crear Cuenta
+                            </a>
+                            <a href="login.html" class="btn btn-outline-light btn-lg">
+                                <i class="bi bi-box-arrow-in-right me-2"></i>
+                                Iniciar Sesión
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <div class="hero-image">
+                            <i class="bi bi-calendar-heart display-1 text-white-50"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row text-center mb-5">
+                    <div class="col-lg-8 mx-auto">
+                        <h2 class="fw-bold mb-3">¿Por qué elegir MEDIAGENDA?</h2>
+                        <p class="text-muted">
+                            Ofrecemos una plataforma completa para la gestión de citas médicas
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body text-center p-4">
+                                <div class="feature-icon bg-primary-soft rounded-circle d-inline-flex align-items-center justify-content-center mb-3">
+                                    <i class="bi bi-calendar-check text-primary fs-4"></i>
+                                </div>
+                                <h5 class="fw-bold mb-3">Fácil Agendamiento</h5>
+                                <p class="text-muted">
+                                    Agenda tus citas médicas en pocos pasos. Selecciona especialidad, 
+                                    doctor y horario disponible.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body text-center p-4">
+                                <div class="feature-icon bg-success-soft rounded-circle d-inline-flex align-items-center justify-content-center mb-3">
+                                    <i class="bi bi-people text-success fs-4"></i>
+                                </div>
+                                <h5 class="fw-bold mb-3">Múltiples Especialidades</h5>
+                                <p class="text-muted">
+                                    Accede a diferentes especialidades médicas: cardiología, 
+                                    dermatología, pediatría y más.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body text-center p-4">
+                                <div class="feature-icon bg-info-soft rounded-circle d-inline-flex align-items-center justify-content-center mb-3">
+                                    <i class="bi bi-shield-check text-info fs-4"></i>
+                                </div>
+                                <h5 class="fw-bold mb-3">Seguro y Confiable</h5>
+                                <p class="text-muted">
+                                    Tus datos están protegidos con los más altos estándares 
+                                    de seguridad y privacidad.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="bg-light py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto text-center">
+                        <h3 class="fw-bold mb-3">¿Listo para empezar?</h3>
+                        <p class="text-muted mb-4">
+                            Únete a miles de usuarios que ya confían en MEDIAGENDA para gestionar sus citas médicas
+                        </p>
+                        <a href="register.html" class="btn btn-primary btn-lg">
+                            <i class="bi bi-arrow-right me-2"></i>
+                            Comenzar Ahora
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Credenciales de prueba -->
+        <section class="py-4 bg-info-subtle">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="card border-info">
+                            <div class="card-header bg-info text-white">
+                                <h6 class="mb-0"><i class="bi bi-info-circle me-2"></i>Credenciales de Prueba</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <strong>Administrador:</strong><br>
+                                        <small>admin@mediagenda.com</small><br>
+                                        <small>admin123</small>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <strong>Doctor (Cardiología):</strong><br>
+                                        <small>dr.cardio@mediagenda.com</small><br>
+                                        <small>doctor123</small>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <strong>Usuario:</strong><br>
+                                        <small>Regístrate como nuevo usuario</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h6 class="fw-bold">MEDIAGENDA</h6>
+                    <p class="text-white-50 mb-0">Sistema de gestión de citas médicas</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="text-white-50 mb-0">
+                        &copy; 2024 MEDIAGENDA. Proyecto de Arquitectura Empresarial.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/auth.js"></script>
+    <script>
+        // Verificar si el usuario ya está autenticado
+        document.addEventListener('DOMContentLoaded', function() {
+            if (AuthManager.isAuthenticated()) {
+                window.location.href = 'dashboard.html';
+            }
+        });
+    </script>
+</body>
+</html>

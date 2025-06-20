@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrarse - MEDIAGENDA</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container-fluid vh-100">
+        <div class="row h-100">
+            <!-- Left Panel - Info -->
+            <div class="col-md-6 bg-gradient-primary d-none d-md-flex align-items-center justify-content-center">
+                <div class="text-center text-white px-4">
+                    <i class="bi bi-person-plus-fill" style="font-size: 4rem; opacity: 0.8;"></i>
+                    <h3 class="fw-bold mt-3 mb-4">Únete a MEDIAGENDA</h3>
+                    <p class="lead mb-4">
+                        Crea tu cuenta gratuita y comienza a gestionar tus citas médicas 
+                        de manera fácil y eficiente.
+                    </p>
+                    <div class="row text-center">
+                        <div class="col-4">
+                            <i class="bi bi-calendar-plus fs-4 mb-2"></i>
+                            <p class="small">Agenda Fácil</p>
+                        </div>
+                        <div class="col-4">
+                            <i class="bi bi-bell-fill fs-4 mb-2"></i>
+                            <p class="small">Recordatorios</p>
+                        </div>
+                        <div class="col-4">
+                            <i class="bi bi-heart-pulse fs-4 mb-2"></i>
+                            <p class="small">Tu Salud</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel - Register Form -->
+            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                <div class="w-100" style="max-width: 450px;">
+                    <!-- Logo -->
+                    <div class="text-center mb-4">
+                        <a href="index.html" class="text-decoration-none">
+                            <i class="bi bi-heart-pulse text-primary" style="font-size: 3rem;"></i>
+                            <h2 class="fw-bold text-primary mt-2">MEDIAGENDA</h2>
+                        </a>
+                        <p class="text-muted">Crear Nueva Cuenta</p>
+                    </div>
+
+                    <!-- Register Form -->
+                    <form id="registerForm" class="needs-validation" novalidate>
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <label for="name" class="form-label">Nombre Completo</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-person"></i>
+                                    </span>
+                                    <input type="text" class="form-control" id="name" name="name" 
+                                           placeholder="Juan Pérez" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Correo Electrónico</label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-envelope"></i>
+                                </span>
+                                <input type="email" class="form-control" id="email" name="email" 
+                                       placeholder="tu@email.com" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Teléfono (Opcional)</label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-telephone"></i>
+                                </span>
+                                <input type="tel" class="form-control" id="phone" name="phone" 
+                                       placeholder="+57 300 123 4567">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-lock"></i>
+                                </span>
+                                <input type="password" class="form-control" id="password" name="password" 
+                                       placeholder="••••••••" required>
+                                <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                            <div class="form-text">Mínimo 6 caracteres</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-lock-fill"></i>
+                                </span>
+                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" 
+                                       placeholder="••••••••" required>
+                                <button class="btn btn-outline-secondary" type="button" id="toggleConfirmPassword">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="acceptTerms" required>
+                            <label class="form-check-label" for="acceptTerms">
+                                Acepto los <a href="#" class="text-primary">términos y condiciones</a> 
+                                y la <a href="#" class="text-primary">política de privacidad</a>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 mb-3" id="registerBtn">
+                            <i class="bi bi-person-plus me-2"></i>
+                            Crear Cuenta
+                        </button>
+
+                        <div class="text-center">
+                            <p class="text-muted mb-0">
+                                ¿Ya tienes una cuenta?
+                                <a href="login.html" class="text-primary text-decoration-none fw-bold">
+                                    Inicia sesión aquí
+                                </a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    
+    <script>
+        // Verificar si ya está autenticado
+        document.addEventListener('DOMContentLoaded', function() {
+            if (AuthManager.isAuthenticated()) {
+                window.location.href = 'dashboard.html';
+                return;
+            }
+        });
+
+        // Toggle password visibility
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordField = document.getElementById('password');
+            const icon = this.querySelector('i');
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                icon.className = 'bi bi-eye-slash';
+            } else {
+                passwordField.type = 'password';
+                icon.className = 'bi bi-eye';
+            }
+        });
+
+        document.getElementById('toggleConfirmPassword').addEventListener('click', function() {
+            const passwordField = document.getElementById('confirmPassword');
+            const icon = this.querySelector('i');
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                icon.className = 'bi bi-eye-slash';
+            } else {
+                passwordField.type = 'password';
+                icon.className = 'bi bi-eye';
+            }
+        });
+
+        // Validación de confirmación de contraseña en tiempo real
+        document.getElementById('confirmPassword').addEventListener('input', function() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = this.value;
+            
+            if (confirmPassword && password !== confirmPassword) {
+                this.setCustomValidity('Las contraseñas no coinciden');
+                this.classList.add('is-invalid');
+            } else {
+                this.setCustomValidity('');
+                this.classList.remove('is-invalid');
+            }
+        });
+
+        // Manejar el submit del formulario
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            if (!Utils.validateForm(this)) {
+                return;
+            }
+
+            const registerBtn = document.getElementById('registerBtn');
+            const loading = Utils.showLoading(registerBtn, 'Creando cuenta...');
+
+            try {
+                const formData = Utils.getFormData(this);
+                
+                // Verificar que las contraseñas coincidan
+                if (formData.password !== formData.confirmPassword) {
+                    Utils.showAlert('Las contraseñas no coinciden', 'danger');
+                    return;
+                }
+
+                const userData = {
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    password: formData.password
+                };
+                
+                await AuthManager.register(userData);
+                
+                Utils.showAlert('¡Cuenta creada exitosamente! Bienvenido a MEDIAGENDA', 'success');
+                
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 2000);
+                
+            } catch (error) {
+                Utils.showAlert(error.message || 'Error al crear la cuenta', 'danger');
+            } finally {
+                loading.hide();
+            }
+        });
+
+        // Animación de entrada
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('registerForm');
+            form.classList.add('fade-in');
+        });
+    </script>
+</body>
+</html>

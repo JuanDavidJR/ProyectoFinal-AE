@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - MEDIAGENDA</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container-fluid vh-100">
+        <div class="row h-100">
+            <!-- Left Panel - Login Form -->
+            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                <div class="w-100" style="max-width: 400px;">
+                    <!-- Logo -->
+                    <div class="text-center mb-4">
+                        <a href="index.html" class="text-decoration-none">
+                            <i class="bi bi-heart-pulse text-primary" style="font-size: 3rem;"></i>
+                            <h2 class="fw-bold text-primary mt-2">MEDIAGENDA</h2>
+                        </a>
+                        <p class="text-muted">Iniciar Sesión</p>
+                    </div>
+
+                    <!-- Login Form -->
+                    <form id="loginForm" class="needs-validation" novalidate>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Correo Electrónico</label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-envelope"></i>
+                                </span>
+                                <input type="email" class="form-control" id="email" name="email" 
+                                       placeholder="tu@email.com" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-lock"></i>
+                                </span>
+                                <input type="password" class="form-control" id="password" name="password" 
+                                       placeholder="••••••••" required>
+                                <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">
+                                Recordarme
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 mb-3" id="loginBtn">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>
+                            Iniciar Sesión
+                        </button>
+
+                        <div class="text-center">
+                            <p class="text-muted mb-0">
+                                ¿No tienes una cuenta?
+                                <a href="register.html" class="text-primary text-decoration-none fw-bold">
+                                    Regístrate aquí
+                                </a>
+                            </p>
+                        </div>
+                    </form>
+
+                    <!-- Credenciales de prueba -->
+                    <div class="mt-4">
+                        <div class="card border-info">
+                            <div class="card-header bg-info text-white py-2">
+                                <h6 class="mb-0">
+                                    <i class="bi bi-info-circle me-2"></i>
+                                    Credenciales de Prueba
+                                </h6>
+                            </div>
+                            <div class="card-body py-2">
+                                <div class="row text-small">
+                                    <div class="col-12 mb-2">
+                                        <strong>Administrador:</strong><br>
+                                        <button class="btn btn-outline-info btn-sm" onclick="fillLogin('admin@mediagenda.com', 'admin123')">
+                                            admin@mediagenda.com
+                                        </button>
+                                    </div>
+                                    <div class="col-12 mb-2">
+                                        <strong>Doctor:</strong><br>
+                                        <button class="btn btn-outline-info btn-sm" onclick="fillLogin('dr.cardio@mediagenda.com', 'doctor123')">
+                                            dr.cardio@mediagenda.com
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel - Info -->
+            <div class="col-md-6 bg-gradient-primary d-none d-md-flex align-items-center justify-content-center">
+                <div class="text-center text-white px-4">
+                    <i class="bi bi-calendar-heart" style="font-size: 4rem; opacity: 0.8;"></i>
+                    <h3 class="fw-bold mt-3 mb-4">Bienvenido de vuelta</h3>
+                    <p class="lead mb-4">
+                        Accede a tu cuenta para gestionar tus citas médicas, 
+                        ver tu historial y mantenerte al día con tu salud.
+                    </p>
+                    <div class="row text-center">
+                        <div class="col-4">
+                            <i class="bi bi-check-circle-fill fs-4 mb-2"></i>
+                            <p class="small">Fácil</p>
+                        </div>
+                        <div class="col-4">
+                            <i class="bi bi-shield-check fs-4 mb-2"></i>
+                            <p class="small">Seguro</p>
+                        </div>
+                        <div class="col-4">
+                            <i class="bi bi-clock-fill fs-4 mb-2"></i>
+                            <p class="small">Rápido</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    
+    <script>
+        // Verificar si ya está autenticado
+        document.addEventListener('DOMContentLoaded', function() {
+            if (AuthManager.isAuthenticated()) {
+                window.location.href = 'dashboard.html';
+                return;
+            }
+        });
+
+        // Toggle password visibility
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordField = document.getElementById('password');
+            const icon = this.querySelector('i');
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                icon.className = 'bi bi-eye-slash';
+            } else {
+                passwordField.type = 'password';
+                icon.className = 'bi bi-eye';
+            }
+        });
+
+        // Función para llenar el formulario con credenciales de prueba
+        function fillLogin(email, password) {
+            document.getElementById('email').value = email;
+            document.getElementById('password').value = password;
+        }
+
+        // Manejar el submit del formulario
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            if (!Utils.validateForm(this)) {
+                return;
+            }
+
+            const loginBtn = document.getElementById('loginBtn');
+            const loading = Utils.showLoading(loginBtn, 'Iniciando sesión...');
+
+            try {
+                const formData = Utils.getFormData(this);
+                await AuthManager.login(formData.email, formData.password);
+                
+                Utils.showAlert('¡Inicio de sesión exitoso!', 'success');
+                
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1000);
+                
+            } catch (error) {
+                Utils.showAlert(error.message || 'Error al iniciar sesión', 'danger');
+            } finally {
+                loading.hide();
+            }
+        });
+
+        // Animación de entrada
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('loginForm');
+            form.classList.add('fade-in');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Citas - MEDIAGENDA</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
+
+    <!-- Main Content -->
+    <div class="container py-4">
+        <!-- Header -->
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <h1 class="h3 mb-2">
+                    <i class="bi bi-calendar-check text-primary me-2"></i>
+                    Mis Citas
+                </h1>
+                <p class="text-muted">Gestiona y revisa tus citas médicas</p>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <a href="new-appointment.html" class="btn btn-primary">
+                    <i class="bi bi-plus-circle me-2"></i>
+                    Nueva Cita
+                </a>
+            </div>
+        </div>
+
+        <!-- Appointments Container -->
+        <div id="appointments-container">
+            <!-- Se llenará dinámicamente -->
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/appointments.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Verificar autenticación y rol
+            if (!AuthManager.requireRole(['user'])) {
+                return;
+            }
+
+            // Renderizar navbar
+            AuthManager.renderNavbar();
+
+            // Cargar citas
+            await MyAppointments.init();
+        });
+    </script>
+</body>
+</html>

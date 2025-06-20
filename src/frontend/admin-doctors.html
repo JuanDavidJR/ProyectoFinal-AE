@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gestionar Doctores - MEDIAGENDA</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link href="css/custom.css" rel="stylesheet" />
+</head>
+<body>
+  <div id="navbar-container"></div>
+  <div class="container py-4">
+    <h1 class="h3 mb-4"><i class="bi bi-people me-2"></i> Gestión de Doctores</h1>
+    <div id="doctors-container" class="table-responsive"></div>
+  </div>
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (!AuthManager.requireRole(['admin'])) return;
+      AuthManager.renderNavbar();
+      try {
+        const doctors = await api.getDoctors();
+        const container = document.getElementById('doctors-container');
+        if (doctors.length === 0) {
+          container.innerHTML = `<p class="text-muted">No hay doctores registrados.</p>`;
+          return;
+        }
+        container.innerHTML = `
+          <table class="table table-bordered">
+            <thead><tr><th>Nombre</th><th>Email</th><th>Teléfono</th><th>Especialidad</th><th>N° Licencia</th></tr></thead>
+            <tbody>
+              ${doctors.map(doc => `
+                <tr>
+                  <td>${doc.name}</td>
+                  <td>${doc.email}</td>
+                  <td>${doc.phone}</td>
+                  <td>${doc.specialty_name}</td>
+                  <td>${doc.license_number}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>`;
+      } catch (error) {
+        console.error(error);
+      }
+    });
+  </script>
+</body>
+</html>

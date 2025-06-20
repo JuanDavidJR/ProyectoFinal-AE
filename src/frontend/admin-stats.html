@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Estadísticas - MEDIAGENDA</title>
+  <link rel="stylesheet" href="./css/custom.css" />
+</head>
+<body>
+  <header>
+    <h1>Estadísticas Generales</h1>
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="admin-doctors.html">Doctores</a>
+      <a href="admin-appointments.html">Citas</a>
+    </nav>
+  </header>
+  <main>
+    <section id="stats" class="stats-container">
+      <div class="stat-card">
+        <h2>Total Usuarios</h2>
+        <p id="total-users">-</p>
+      </div>
+      <div class="stat-card">
+        <h2>Total Citas</h2>
+        <p id="total-appointments">-</p>
+      </div>
+      <div class="stat-card">
+        <h2>Citas Programadas</h2>
+        <p id="scheduled-appointments">-</p>
+      </div>
+      <div class="stat-card">
+        <h2>Citas Completadas</h2>
+        <p id="completed-appointments">-</p>
+      </div>
+    </section>
+  </main>
+  <script src="./js/api.js"></script>
+  <script>
+    async function loadStats() {
+      try {
+        const res = await apiClient.get('/api/admin/stats');
+        document.getElementById('total-users').textContent = res.totalUsers;
+        document.getElementById('total-appointments').textContent = res.totalAppointments;
+        document.getElementById('scheduled-appointments').textContent = res.scheduledAppointments;
+        document.getElementById('completed-appointments').textContent = res.completedAppointments;
+      } catch (err) {
+        alert("Error al cargar estadísticas.");
+      }
+    }
+    loadStats();
+  </script>
+</body>
+</html>

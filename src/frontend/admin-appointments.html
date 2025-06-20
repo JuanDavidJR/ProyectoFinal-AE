@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Todas las Citas - MEDIAGENDA</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link href="css/custom.css" rel="stylesheet" />
+</head>
+<body>
+  <div id="navbar-container"></div>
+  <div class="container py-4">
+    <h1 class="h3 mb-4"><i class="bi bi-calendar-check me-2"></i> Todas las Citas</h1>
+    <div id="appointments-container" class="table-responsive"></div>
+  </div>
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (!AuthManager.requireRole(['admin'])) return;
+      AuthManager.renderNavbar();
+      try {
+        const appointments = await api.getAllAppointments();
+        const container = document.getElementById('appointments-container');
+        if (appointments.length === 0) {
+          container.innerHTML = `<p class="text-muted">No hay citas registradas.</p>`;
+          return;
+        }
+        container.innerHTML = `
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Paciente</th>
+                <th>Doctor</th>
+                <th>Especialidad</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${appointments.map(apt => `
+                <tr>
+                  <td>${apt.patient_name}</td>
+                  <td>${apt.doctor_name}</td>
+                  <td>${apt.specialty_name}</td>
+                  <td>${Utils.formatDateShort(apt.appointment_date)}</td>
+                  <td>${Utils.formatTime(apt.appointment_time)}</td>
+                  <td>${Utils.createStatusBadge(apt.status)}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>`;
+      } catch (error) {
+        console.error(error);
+      }
+    });
+  </script>
+</body>
+</html>

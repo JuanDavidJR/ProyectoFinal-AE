@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva Cita - MEDIAGENDA</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
+
+    <!-- Main Content -->
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Header -->
+                <div class="mb-4">
+                    <h1 class="h3 mb-2">
+                        <i class="bi bi-calendar-plus text-primary me-2"></i>
+                        Agendar Nueva Cita
+                    </h1>
+                    <p class="text-muted">Selecciona la especialidad, doctor y horario para tu cita médica</p>
+                </div>
+
+                <!-- Appointment Form -->
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <form id="appointmentForm" class="needs-validation" novalidate>
+                            <!-- Step 1: Especialidad -->
+                            <div class="step-content" id="step-1">
+                                <h5 class="card-title mb-3">
+                                    <span class="badge bg-primary me-2">1</span>
+                                    Selecciona una Especialidad
+                                </h5>
+                                
+                                <div class="mb-4">
+                                    <label for="specialtyId" class="form-label">Especialidad Médica</label>
+                                    <select class="form-select" id="specialtyId" name="specialtyId" required>
+                                        <option value="">Cargando especialidades...</option>
+                                    </select>
+                                    <div class="form-text">
+                                        Solo puedes tener una cita activa por especialidad
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-end">
+                                    <button type="button" class="btn btn-primary" onclick="AppointmentForm.nextStep()" disabled id="step1-next">
+                                        Siguiente
+                                        <i class="bi bi-arrow-right ms-1"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 2: Doctor -->
+                            <div class="step-content d-none" id="step-2">
+                                <h5 class="card-title mb-3">
+                                    <span class="badge bg-primary me-2">2</span>
+                                    Selecciona un Doctor
+                                </h5>
+                                
+                                <div class="mb-4">
+                                    <label for="doctorId" class="form-label">Doctor</label>
+                                    <select class="form-select" id="doctorId" name="doctorId" required>
+                                        <option value="">Selecciona una especialidad primero</option>
+                                    </select>
+                                </div>
+
+                                <div class="d-flex justify-content-between">
+                                    <button type="button" class="btn btn-outline-secondary" onclick="AppointmentForm.prevStep()">
+                                        <i class="bi bi-arrow-left me-1"></i>
+                                        Anterior
+                                    </button>
+                                    <button type="button" class="btn btn-primary" onclick="AppointmentForm.nextStep()" disabled id="step2-next">
+                                        Siguiente
+                                        <i class="bi bi-arrow-right ms-1"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 3: Fecha y Hora -->
+                            <div class="step-content d-none" id="step-3">
+                                <h5 class="card-title mb-3">
+                                    <span class="badge bg-primary me-2">3</span>
+                                    Selecciona Fecha y Hora
+                                </h5>
+                                
+                                <div class="row mb-4">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="appointmentDate" class="form-label">Fecha de la Cita</label>
+                                        <select class="form-select" id="appointmentDate" name="appointmentDate" required>
+                                            <option value="">Selecciona una fecha</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="appointmentTime" class="form-label">Hora de la Cita</label>
+                                        <select class="form-select" id="appointmentTime" name="appointmentTime" required>
+                                            <option value="">Selecciona una fecha primero</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="notes" class="form-label">Notas Adicionales (Opcional)</label>
+                                    <textarea class="form-control" id="notes" name="notes" rows="3" 
+                                              placeholder="Describe brevemente el motivo de tu consulta o cualquier información relevante..."></textarea>
+                                </div>
+
+                                <div class="d-flex justify-content-between">
+                                    <button type="button" class="btn btn-outline-secondary" onclick="AppointmentForm.prevStep()">
+                                        <i class="bi bi-arrow-left me-1"></i>
+                                        Anterior
+                                    </button>
+                                    <button type="button" class="btn btn-primary" onclick="AppointmentForm.nextStep()" disabled id="step3-next">
+                                        Siguiente
+                                        <i class="bi bi-arrow-right ms-1"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 4: Confirmación -->
+                            <div class="step-content d-none" id="step-4">
+                                <h5 class="card-title mb-3">
+                                    <span class="badge bg-success me-2">4</span>
+                                    Confirmar Cita
+                                </h5>
+                                
+                                <div class="card bg-light border-0 mb-4">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Resumen de tu Cita</h6>
+                                        <div id="appointment-summary">
+                                            <!-- Se llenará dinámicamente -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="alert alert-info">
+                                    <i class="bi bi-info-circle me-2"></i>
+                                    <strong>Importante:</strong> Una vez confirmada, podrás ver y gestionar tu cita desde el panel "Mis Citas".
+                                </div>
+
+                                <div class="d-flex justify-content-between">
+                                    <button type="button" class="btn btn-outline-secondary" onclick="AppointmentForm.prevStep()">
+                                        <i class="bi bi-arrow-left me-1"></i>
+                                        Anterior
+                                    </button>
+                                    <button type="submit" class="btn btn-success" id="confirmBtn">
+                                        <i class="bi bi-check-circle me-2"></i>
+                                        Confirmar Cita
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="card border-0 shadow-sm mt-3">
+                    <div class="card-body p-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <small class="text-muted">Progreso</small>
+                            <small class="text-muted"><span id="current-step">1</span> de 4</small>
+                        </div>
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-primary" id="progress-bar" role="progressbar" style="width: 25%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/appointments.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Verificar autenticación y rol
+            if (!AuthManager.requireRole(['user'])) {
+                return;
+            }
+
+            // Renderizar navbar
+            AuthManager.renderNavbar();
+
+            // Inicializar formulario de citas
+            await AppointmentForm.init();
+        });
+    </script>
+</body>
+</html>
